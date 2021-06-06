@@ -1,0 +1,63 @@
+html {
+     
+}
+
+body {
+    margin: 0px;
+}
+
+/* --------------------------------------------------- */
+
+#header {
+    background-color: yellow;
+    height: 70px;
+}
+
+    #header>div{
+        background-color: blueviolet;
+        width: 960px;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+
+#visual {
+    background-color: red;
+    height: 171px;
+}
+    #visual>div{
+        background-color: blueviolet;
+        width: 960px;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+#body {
+    background-color: green;
+    min-height: 300px;
+}
+    #body>div{
+        background-color: blueviolet;
+        width: 960px;
+        min-height: inherit;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+#footer {
+    background-color: blue;
+    height: 100px;
+}
+    #footer>div{
+        background-color: blueviolet;
+        width: 960px;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
