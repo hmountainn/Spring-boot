@@ -46,6 +46,14 @@ public class MybatisNoticeDao implements NoticeDao {
 		
 		return mapper.insert(notice);
 	}
+	
+	@Override
+	public int delete(int id) {
+		NoticeDao mapper = sqlSession.getMapper(NoticeDao.class);
+		
+		return mapper.delete(id);
+		
+	}
 
 	@Override
 	public int update(Notice notice) {
@@ -53,10 +61,6 @@ public class MybatisNoticeDao implements NoticeDao {
 		return 0;
 	}
 
-	@Override
-	public int delete(Notice notice) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 }

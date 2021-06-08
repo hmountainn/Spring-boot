@@ -45,7 +45,7 @@ public class JdbcNoticeDao implements NoticeDao {
 	}
 
 	@Override
-	public int delete(Notice notice) {
+	public int delete(int id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

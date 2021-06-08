@@ -138,7 +138,10 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("del")
-	public String del() {
-		return "admin notice del";
+	public String del(int id) {
+		
+		service.delete(id);
+		
+		return "redirect:list";
 	}
 }

@@ -12,6 +12,7 @@ public interface NoticeService {
 	List<Notice> getList(int page,String field, String query); // 검색
 	
 	int insert(Notice notice);
+	int delete(int id);
 	int hitUp(int id);
 	int likeUp(int id);
 }

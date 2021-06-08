@@ -6,6 +6,7 @@
 <mapper namespace="com.newlecture.web.dao.NoticeDao">
 	<select id="getList" resultType="com.newlecture.web.entity.Notice">
 		select * from Notice where ${field} like '%${query}%'
+		order by regdate desc
 	</select>
 	
 	<insert id="insert" parameterType="com.newlecture.web.entity.Notice">
@@ -16,4 +17,8 @@
 	<select id="get" resultType="com.newlecture.web.entity.Notice">
 		select * from Notice where id=#{id}
 	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from Notice where id=#{id}
+	</delete>
 </mapper>

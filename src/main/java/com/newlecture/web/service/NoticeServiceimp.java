@@ -43,6 +43,12 @@ public class NoticeServiceimp implements NoticeService {
 		
 		return dao.insert(notice);
 	}
+	
+	@Override
+	public int delete(int id) {
+		
+		return dao.delete(id);
+	}
 
 	@Override
 	public int hitUp(int id) {
@@ -55,6 +61,9 @@ public class NoticeServiceimp implements NoticeService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+
 
 
 
