@@ -14,7 +14,8 @@
 	</select>
 	
 	<select id="getCount" resultType="int">
-		select count(id) count from notice
+		select count(id) count from Notice
+		where ${param1} like '%${param2}%'
 	</select>
 	
 	<insert id="insert" parameterType="com.newlecture.web.entity.Notice">
