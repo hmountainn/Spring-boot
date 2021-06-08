@@ -110,9 +110,16 @@ public class NoticeController {
 	
 	//@RequestMapping(value = "reg", method = RequestMethod.POST) 옜날방식
 	@PostMapping("reg")
-	@RequestMapping("reg")
-	public String reg(String test) {
-		return "admin notice reg";
+	public String reg(String title, String content) {
+		
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+		notice.setWriterId("hi");
+		
+		service.insert(notice);
+		
+		return "redirect:list"; //포워딩x redirect하기
 	}
 	
 	@RequestMapping("edit")

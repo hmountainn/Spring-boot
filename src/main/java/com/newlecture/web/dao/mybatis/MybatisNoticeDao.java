@@ -41,8 +41,9 @@ public class MybatisNoticeDao implements NoticeDao {
 
 	@Override
 	public int insert(Notice notice) {
-		// TODO Auto-generated method stub
-		return 0;
+		NoticeDao mapper = sqlSession.getMapper(NoticeDao.class);
+		
+		return mapper.insert(notice);
 	}
 
 	@Override

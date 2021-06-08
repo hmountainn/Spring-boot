@@ -33,8 +33,8 @@ public class NoticeServiceimp implements NoticeService {
 
 	@Override
 	public int insert(Notice notice) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return dao.insert(notice);
 	}
 
 	@Override
