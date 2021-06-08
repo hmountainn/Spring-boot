@@ -30,7 +30,8 @@ public class NoticeController {
 	//@ResponseBody //이건 문서봔환말고 그냥 restController처럼 텍스트 반환
 	public String list(Model model) {
 		
-		List<Notice> list = service.getList();
+		//List<Notice> list = service.getList();
+		List<Notice> list = service.getList(1, "title", "t"); //검색
 		model.addAttribute("list",list);
 		
 		return "admin.notice.list"; //mapping 정보

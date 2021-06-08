@@ -21,6 +21,15 @@ public class NoticeServiceimp implements NoticeService {
 		
 		return list;
 	}
+	
+	@Override
+	public List<Notice> getList(int page, String field, String query) {
+		List<Notice> list = dao.getList(page, field, query);
+		
+		return list;
+	}
+
+	
 
 	@Override
 	public int insert(Notice notice) {
@@ -39,5 +48,6 @@ public class NoticeServiceimp implements NoticeService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }
