@@ -22,9 +22,8 @@ public class MybatisNoticeDao implements NoticeDao {
 	}
 
 	@Override
-	public List<Notice> getList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Notice> getList() { //오버로드 하기
+		return getList(1, "title", "");
 	}
 
 	@Override
