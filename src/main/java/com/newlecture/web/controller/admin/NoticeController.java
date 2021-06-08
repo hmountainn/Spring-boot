@@ -57,20 +57,30 @@ public class NoticeController {
 		//return "admin.notice.list"; //mapping 정보
 	}
 	
-	@RequestMapping("detail")
-	//@ResponseBody //이건 문서봔환말고 그냥 restController처럼 텍스트 반환
-	public String detail(Model model) {
+//	@RequestMapping("detail")
+//	//@ResponseBody //이건 문서봔환말고 그냥 restController처럼 텍스트 반환
+//	public String detail(Model model) {
+//		
+//		Notice notice = new Notice();
+//		notice.setId(1);
+//		notice.setTitle("클릭하세용");
+//		notice.setWriterId("JISAN");
+//		
+//		model.addAttribute("notice", notice);
+//		model.addAttribute("title", notice.getTitle());
+//		
+//		return "admin.notice.detail";
+//	}
+	
+	@GetMapping("detail")
+	public String detail(Model model, int id) {
 		
-		Notice notice = new Notice();
-		notice.setId(1);
-		notice.setTitle("클릭하세용");
-		notice.setWriterId("JISAN");
-		
-		model.addAttribute("notice", notice);
-		model.addAttribute("title", notice.getTitle());
+		Notice notice = service.get(id);
+		model.addAttribute("notice",notice);
 		
 		return "admin.notice.detail";
 	}
+	
 	
 	//@RequestMapping(value = "reg", method = RequestMethod.GET) 옜날방식
 	//@GetMapping("reg/{uid}/{id}")

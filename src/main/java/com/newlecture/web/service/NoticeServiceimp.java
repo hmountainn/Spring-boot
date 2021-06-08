@@ -14,6 +14,13 @@ public class NoticeServiceimp implements NoticeService {
 	@Autowired
 	private NoticeDao dao;
 	
+	@Override
+	public Notice get(int id) {
+		Notice notice = dao.get(id);
+		
+		return notice;
+	}
+	
 
 	@Override
 	public List<Notice> getList() {
@@ -48,6 +55,8 @@ public class NoticeServiceimp implements NoticeService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
 
 
 }

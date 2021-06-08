@@ -12,4 +12,8 @@
 		insert into Notice(title,content, WriterId)
 		values(#{title},#{content},#{writerId})
 	</insert>
+	
+	<select id="get" resultType="com.newlecture.web.entity.Notice">
+		select * from Notice where id=#{id}
+	</select>
 </mapper>
