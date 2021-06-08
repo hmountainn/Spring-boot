@@ -14,9 +14,7 @@
 	</select>
 	
 	<select id="getCount" resultType="int">
-		select count(id) count
-		from notice
-		where ${field} like '%${query}%'
+		select count(id) count from notice
 	</select>
 	
 	<insert id="insert" parameterType="com.newlecture.web.entity.Notice">
