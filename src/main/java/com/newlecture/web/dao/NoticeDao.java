@@ -13,6 +13,7 @@ public interface NoticeDao {
 	List<Notice> getList(); //필터링, 정렬, 집계
 	List<Notice> getList(int page); //페이징
 	List<Notice> getList(int page, String field, String query); //검색
+	int getCount(String field, String query);
 	
 	int insert(Notice notice);
 	int update(Notice notice);

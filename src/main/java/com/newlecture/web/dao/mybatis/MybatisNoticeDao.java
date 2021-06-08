@@ -57,8 +57,14 @@ public class MybatisNoticeDao implements NoticeDao {
 
 	@Override
 	public int update(Notice notice) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return mapper.update(notice);
+	}
+
+	@Override
+	public int getCount(String field, String query) {
+		
+		return mapper.getCount(field, query);
 	}
 
 
