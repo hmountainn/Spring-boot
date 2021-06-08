@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
+import com.newlecture.web.entity.NoticeView;
 
 @Repository //IOC에 담기
 public class MybatisNoticeDao implements NoticeDao {
@@ -65,6 +66,11 @@ public class MybatisNoticeDao implements NoticeDao {
 	public int getCount(String field, String query) {
 		
 		return mapper.getCount(field, query);
+	}
+
+	@Override
+	public List<NoticeView> getViewList(int page, String field, String query) {
+		return mapper.getViewList(page,field, query);
 	}
 
 
