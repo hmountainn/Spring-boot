@@ -17,6 +17,7 @@ public class MybatisNoticeDao implements NoticeDao {
 	private NoticeDao mapper;
 	
 	//생성자로 꺼내쓰는작업 한번에 하기
+	@Autowired 
 	public MybatisNoticeDao(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 		mapper = sqlSession.getMapper(NoticeDao.class);
