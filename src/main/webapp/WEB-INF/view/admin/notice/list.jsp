@@ -60,7 +60,7 @@
                                 </thead>
                                
                                 <tbody>
-                                <c:forEach var="n" items="${list}" begin="0" end="2" varStatus="st">
+                                <c:forEach var="n" items="${list}" varStatus="st">
                                    <tr>
                                        <td class="w-1">${n.id}</td>
                                        <td class="truncate text-align-left"><a href="detail?id=${n.id}">${n.title}</a></td>
