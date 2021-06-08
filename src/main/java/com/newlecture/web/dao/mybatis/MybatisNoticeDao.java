@@ -12,13 +12,18 @@ import com.newlecture.web.entity.Notice;
 @Repository //IOC에 담기
 public class MybatisNoticeDao implements NoticeDao {
 
-	@Autowired 
+//	@Autowired 
 	private SqlSession sqlSession; //Mapper container에서 mapping정보 꺼내서 쓰기
+	private NoticeDao mapper;
+	
+	//생성자로 꺼내쓰는작업 한번에 하기
+	public MybatisNoticeDao(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+		mapper = sqlSession.getMapper(NoticeDao.class);
+	}
 	
 	@Override
-	public Notice get(int id) {
-		NoticeDao mapper = sqlSession.getMapper(NoticeDao.class);
-		
+	public Notice get(int id) {	
 		return mapper.get(id);
 	}
 
@@ -35,22 +40,16 @@ public class MybatisNoticeDao implements NoticeDao {
 
 	@Override
 	public List<Notice> getList(int page, String field, String query) {
-		NoticeDao mapper = sqlSession.getMapper(NoticeDao.class);
-		
 		return mapper.getList(page, field, query);
 	}
 
 	@Override
 	public int insert(Notice notice) {
-		NoticeDao mapper = sqlSession.getMapper(NoticeDao.class);
-		
 		return mapper.insert(notice);
 	}
 	
 	@Override
 	public int delete(int id) {
-		NoticeDao mapper = sqlSession.getMapper(NoticeDao.class);
-		
 		return mapper.delete(id);
 		
 	}
