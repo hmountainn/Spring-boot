@@ -38,7 +38,7 @@
 		title = #{title},
 		writerId = #{writerId},
 		content = #{content},
-		hit = #{hit: 0},
+		hit = #{hit},
 		files = #{files},
 		pub = #{pub}
     	where id=#{id}
