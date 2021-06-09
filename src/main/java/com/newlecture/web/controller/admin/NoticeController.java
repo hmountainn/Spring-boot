@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.service.NoticeService;
 
@@ -131,10 +132,29 @@ public class NoticeController {
 		
 		return "redirect:list"; //포워딩x redirect하기
 	}
+	@Autowired
+	private NoticeDao noticeDao;
 	
-	@RequestMapping("edit")
-	public String edit() {
-		return "admin notice edit";
+	@GetMapping("edit")
+	public String edit(int id, Model model) {
+		Notice notice = noticeDao.get(id);
+		model.addAttribute("notice",notice);
+		
+		return "admin.notice.edit";
+	}
+	
+	
+	@PostMapping("edit")
+//	public String edit(int id,String title, String content) {
+//		
+//		Notice notice = new Notice();
+//		notice.setId(id);
+//		notice.setTitle(title);
+//		notice.setContent(content);
+	public String edit(Notice notice) {
+		noticeDao.update(notice);
+		
+		return "redirect:detail?id="+notice.getId();
 	}
 	
 	@RequestMapping("del")

@@ -48,14 +48,15 @@
 	
 	<update id="update" parameterType="com.newlecture.web.entity.Notice">
 		update Notice
-    	SET
-		title = #{title},
-		writerId = #{writerId},
-		content = #{content},
-		hit = #{hit},
-		files = #{files},
-		pub = #{pub}
-    	where id=#{id}
+    	<set>
+			<if test="title != null">title = #{title},</if>
+			<if test="writerId != null">writerId = #{writerId},</if>
+			<if test="content != null">content = #{content},</if>
+			<if test="hit != null">hit = #{hit},</if>
+			<if test="files != null">files = #{files},</if>
+			<if test="pub != null">pub = #{pub}</if>
+	    	where id=#{id}
+    	</set>
 	</update>
 	
 	
