@@ -11,7 +11,7 @@ import com.newlecture.web.entity.Notice;
 import com.newlecture.web.entity.NoticeView;
 
 @Repository //IOC에 담기
-public class MybatisNoticeDao implements NoticeDao {
+public class MyBatisNoticeDao implements NoticeDao {
 
 //	@Autowired 
 	private SqlSession sqlSession; //Mapper container에서 mapping정보 꺼내서 쓰기
@@ -19,7 +19,7 @@ public class MybatisNoticeDao implements NoticeDao {
 	
 	//생성자로 꺼내쓰는작업 한번에 하기
 	@Autowired 
-	public MybatisNoticeDao(SqlSession sqlSession) {
+	public MyBatisNoticeDao(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 		mapper = sqlSession.getMapper(NoticeDao.class);
 	}
@@ -31,18 +31,17 @@ public class MybatisNoticeDao implements NoticeDao {
 
 	@Override
 	public List<Notice> getList() { //오버로드 하기
-		return getList(1, "title", "");
+		return getList(0,10,"title", "");
 	}
 
 	@Override
-	public List<Notice> getList(int page) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Notice> getList(int offset, int size) {
+		return getList(offset,size,"title","");
 	}
 
 	@Override
-	public List<Notice> getList(int page, String field, String query) {
-		return mapper.getList(page, field, query);
+	public List<Notice> getList(int offset, int size, String field, String query) {
+		return mapper.getList(offset,size, field, query);
 	}
 
 	@Override

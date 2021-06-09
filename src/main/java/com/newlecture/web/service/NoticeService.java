@@ -9,7 +9,9 @@ public interface NoticeService {
 	
 	Notice get(int id);
 	List<Notice> getList();
+	List<Notice> getList(int page);
 	List<Notice> getList(int page,String field, String query); // 검색
+	//List<Notice> getList(int page,String field, String query, String colOrder, boolean isAsc); //정렬 
 	
 	int insert(Notice notice);
 	int delete(int id);

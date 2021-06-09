@@ -23,15 +23,25 @@ public class NoticeServiceimp implements NoticeService {
 	
 
 	@Override
-	public List<Notice> getList() {
-		List<Notice> list = dao.getList();
+	public List<Notice> getList() { //오버로드
 		
+		List<Notice> list = getList(1, null, null);
+		return list;
+	}
+	
+	@Override
+	public List<Notice> getList(int page) { //오버로드
+		
+		List<Notice> list = getList(page, null, null);
 		return list;
 	}
 	
 	@Override
 	public List<Notice> getList(int page, String field, String query) {
-		List<Notice> list = dao.getList(page, field, query);
+		int offset = (page-1)*10; // 1->0, 2->10, 3->20
+		int size=10;
+		
+		List<Notice> list = dao.getList(offset, size, field, query);
 		
 		return list;
 	}

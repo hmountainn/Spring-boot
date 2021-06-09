@@ -12,8 +12,8 @@ import com.newlecture.web.entity.NoticeView;
 public interface NoticeDao {
 	Notice get(int id);
 	List<Notice> getList(); //필터링, 정렬, 집계
-	List<Notice> getList(int page); //페이징
-	List<Notice> getList(int page, String field, String query); //검색
+	List<Notice> getList(int offset, int size); //페이징
+	List<Notice> getList(int offset, int size, String field, String query); //검색
 	List<NoticeView> getViewList(int page,String field, String query);
 	
 	int getCount(String field, String query);

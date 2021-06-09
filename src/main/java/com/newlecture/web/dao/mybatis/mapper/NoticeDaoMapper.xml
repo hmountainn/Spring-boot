@@ -16,8 +16,15 @@
 	</select>
 	
 	<select id="getList" resultType="com.newlecture.web.entity.Notice">
-		select * from Notice where ${field} like '%${query}%'
+		select * from Notice 
+		<where>
+		<if test="field != null">
+			${field} like '%${query}%'
+		</if>
+			and hit = 0
+		</where>
 		order by regdate desc
+		limit #{size} offset #{offset}
 	</select>
 	
 	<select id="getViewList" resultType="com.newlecture.web.entity.NoticeView">
