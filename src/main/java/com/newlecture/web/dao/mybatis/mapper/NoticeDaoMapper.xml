@@ -17,12 +17,12 @@
 	
 	<select id="getList" resultType="com.newlecture.web.entity.Notice">
 		select * from Notice where ${field} like '%${query}%'
-		order by reg_date desc
+		order by regdate desc
 	</select>
 	
 	<select id="getViewList" resultType="com.newlecture.web.entity.NoticeView">
 		select * from NoticeView where ${param2} like '%${param3}%'
-		order by reg_date desc
+		order by regdate desc
 	</select>
 	
 	<select id="getCount" resultType="int">
@@ -31,7 +31,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.newlecture.web.entity.Notice">
-		insert into Notice(title,content, writer_Id)
+		insert into Notice(title,content, writerId)
 		values(#{title},#{content},#{writerId})
 	</insert>
 		
@@ -43,7 +43,7 @@
 		update Notice
     	SET
 		title = #{title},
-		writer_Id = #{writerId},
+		writerId = #{writerId},
 		content = #{content},
 		hit = #{hit},
 		files = #{files},
