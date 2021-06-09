@@ -5,17 +5,17 @@
 
 <mapper namespace="com.newlecture.web.dao.NoticeDao">
 
-	<resultMap type="com.newlecture.web.entity.Notice" id="noticeMap">
+	<!-- <resultMap type="com.newlecture.web.entity.Notice" id="noticeMap">
         <result column="writer_id" property="writerId"/>
         <result column="reg_date" property="regDate"/>
-    </resultMap>
+    </resultMap> -->
 	
 
 	<select id="get" resultType="com.newlecture.web.entity.Notice">
 		select * from Notice where id=#{id}
 	</select>
 	
-	<select id="getList" resultMap="noticeMap">
+	<select id="getList" resultType="com.newlecture.web.entity.Notice">
 		select * from Notice where ${field} like '%${query}%'
 		order by reg_date desc
 	</select>
