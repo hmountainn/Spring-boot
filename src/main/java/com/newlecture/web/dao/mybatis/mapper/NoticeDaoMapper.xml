@@ -27,6 +27,19 @@
 		limit #{size} offset #{offset}
 	</select>
 	
+	
+	<select id="getListIn" resultType="com.newlecture.web.entity.Notice">
+	  SELECT *
+	  FROM Notice
+	  WHERE ID in
+	  <foreach item="id" index="index" collection="ids"
+	      open="(" separator="," close=")">
+	        #{id}
+ 	  </foreach>
+	</select>
+	
+	
+	
 	<select id="getViewList" resultType="com.newlecture.web.entity.NoticeView">
 		select * from NoticeView where ${param2} like '%${param3}%'
 		order by regdate desc
@@ -46,8 +59,8 @@
 		delete from Notice where id=#{id}
 	</delete>
 	
-	<update id="update" parameterType="com.newlecture.web.entity.Notice">
-		update Notice
+    <update id="update" parameterType="com.newlecture.web.entity.Notice">
+    	update Notice
     	<set>
 			<if test="title != null">title = #{title},</if>
 			<if test="writerId != null">writerId = #{writerId},</if>
@@ -55,9 +68,10 @@
 			<if test="hit != null">hit = #{hit},</if>
 			<if test="files != null">files = #{files},</if>
 			<if test="pub != null">pub = #{pub}</if>
-	    	where id=#{id}
     	</set>
-	</update>
+	   	where id=#{id}
+    </update>
+	
 	
 	
 </mapper>

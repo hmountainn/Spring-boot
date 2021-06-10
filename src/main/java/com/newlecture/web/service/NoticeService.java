@@ -14,7 +14,14 @@ public interface NoticeService {
 	//List<Notice> getList(int page,String field, String query, String colOrder, boolean isAsc); //정렬 
 	
 	int insert(Notice notice);
-	int delete(int id);
+	int update(Notice notice);
+	
+	//자세한 페이지를 조회 -> 조회수 up
 	int hitUp(int id);
+	
+	//좋아요 클릭 -> 좋아요를 토글
+	int likeToggle(int id);
+	
+	int delete(int id);
 	int likeUp(int id);
 }

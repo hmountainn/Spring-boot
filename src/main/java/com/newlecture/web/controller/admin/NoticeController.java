@@ -132,13 +132,16 @@ public class NoticeController {
 		
 		return "redirect:list"; //포워딩x redirect하기
 	}
-	@Autowired
-	private NoticeDao noticeDao;
 	
 	@GetMapping("edit")
 	public String edit(int id, Model model) {
-		Notice notice = noticeDao.get(id);
+		Notice notice = service.get(id);
 		model.addAttribute("notice",notice);
+		
+//		int[] ids = {23,40,45};
+//		List<Notice> list = noticeDao.getListIn(ids);
+//		model.addAttribute("list",list);
+		
 		
 		return "admin.notice.edit";
 	}
@@ -152,7 +155,7 @@ public class NoticeController {
 //		notice.setTitle(title);
 //		notice.setContent(content);
 	public String edit(Notice notice) {
-		noticeDao.update(notice);
+		service.update(notice);
 		
 		return "redirect:detail?id="+notice.getId();
 	}

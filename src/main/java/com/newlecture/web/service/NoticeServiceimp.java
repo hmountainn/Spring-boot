@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
@@ -59,6 +60,19 @@ public class NoticeServiceimp implements NoticeService {
 		
 		return dao.delete(id);
 	}
+	
+	@Transactional
+	@Override
+	public int update(Notice notice) {
+		notice.setHit(101);
+		dao.update(notice);
+		
+		notice.setHit(55);
+		dao.update(notice);
+		
+		return 0;
+	}
+
 
 	@Override
 	public int hitUp(int id) {
@@ -71,6 +85,15 @@ public class NoticeServiceimp implements NoticeService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+	@Override
+	public int likeToggle(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 
 

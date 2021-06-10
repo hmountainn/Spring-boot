@@ -15,6 +15,7 @@ public interface NoticeDao {
 	List<Notice> getList(int offset, int size); //페이징
 	List<Notice> getList(int offset, int size, String field, String query); //검색
 	List<NoticeView> getViewList(int page,String field, String query);
+	List<Notice> getListIn(int[] ids);
 	
 	int getCount(String field, String query);
 	

@@ -72,6 +72,11 @@ public class MyBatisNoticeDao implements NoticeDao {
 		return mapper.getViewList(page,field, query);
 	}
 
+	@Override
+	public List<Notice> getListIn(int[] ids) {
+		return mapper.getListIn(ids);
+	}
+
 
 
 }
