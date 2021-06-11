@@ -91,7 +91,7 @@ public class NoticeController {
 			@RequestParam(name = "f", defaultValue = "title") String field, //f로 전달된값 field에 넣기
 			@RequestParam(defaultValue="0") Integer x,
 			@RequestParam(defaultValue="0") Integer y,/*HttpServletRequest request*/
-			@CookieValue(name="test", defaultValue = "hi") String test,  //쿠키값 test에 넣고 기본값은 "hi"
+			@CookieValue(name="test", defaultValue = "jisan") String test,  //쿠키값 test에 넣고 기본값은 "hi"
 //			@PathVariable String uid,
 //			@PathVariable Integer id, //경로로 온 값 받기
 			MultipartFile file, //파일 업로드
@@ -126,7 +126,7 @@ public class NoticeController {
 		Notice notice = new Notice();
 		notice.setTitle(title);
 		notice.setContent(content);
-		notice.setWriterId("hi");
+		notice.setWriterId("jisan");
 		
 		service.insert(notice);
 		
