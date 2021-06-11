@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
@@ -43,7 +45,9 @@ public class MyBatisNoticeDao implements NoticeDao {
 	public List<Notice> getList(int offset, int size, String field, String query) {
 		return mapper.getList(offset,size, field, query);
 	}
-
+	
+	//트랜잭션 옵션
+	//@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public int insert(Notice notice) {
 		return mapper.insert(notice);
