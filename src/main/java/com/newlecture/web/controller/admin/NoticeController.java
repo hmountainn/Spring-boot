@@ -35,7 +35,7 @@ public class NoticeController {
 		List<Notice> list = service.getList(1, "title", ""); //검색
 		model.addAttribute("list",list);
 		
-		return "admin.notice.list"; //mapping 정보
+		return "admin/notice/list"; //mapping 정보
 		
 //		List<Notice> list = new ArrayList<>();
 //		Notice notice = null;
