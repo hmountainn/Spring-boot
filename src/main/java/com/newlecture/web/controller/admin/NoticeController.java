@@ -29,11 +29,18 @@ public class NoticeController {
 	
 	@RequestMapping("list")
 	//@ResponseBody //이건 문서봔환말고 그냥 restController처럼 텍스트 반환
-	public String list(Model model) {
+	public String list(
+			@RequestParam(name="p", defaultValue = "1") Integer page,
+			@RequestParam(name="f", defaultValue = "title") String field,
+			@RequestParam(name="q", defaultValue = "") String query,
+			Model model) {
 		
 		//List<Notice> list = service.getList();
-		List<Notice> list = service.getList(1, "title", ""); //검색
+		List<Notice> list = service.getList(page, field, query); //검색
+		int count = service.getCount(field, query);
+		
 		model.addAttribute("list",list);
+		model.addAttribute("count",count);
 		
 		return "admin/notice/list"; //mapping 정보
 		

@@ -95,6 +95,14 @@ public class NoticeServiceimp implements NoticeService {
 
 
 
+	@Override
+	public int getCount(String field, String query) {
+		
+		return dao.getCount(field, query);
+	}
+
+
+
 
 
 

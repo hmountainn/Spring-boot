@@ -24,4 +24,5 @@ public interface NoticeService {
 	
 	int delete(int id);
 	int likeUp(int id);
+	int getCount(String field, String query);
 }
