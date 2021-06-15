@@ -7,12 +7,7 @@
 	<meta charset="UTF-8">
 	<title>공지사항목록</title>
 </head>
-<!-- 		page: 7 ==> [6],7,8,9,10
-		page: 23 ==> [21],22,23,24,25
-		
-		1.page, 2.size=10
-		offset = (page-1)%5;
-		startPage = page-offset   -->  
+
 
    <main class="main" layout:fragment="main"
    	th:with="
@@ -104,13 +99,7 @@
          
          <div>
          </div>
-         
-<!-- 		page: 7 ==> [6],7,8,9,10
-		page: 23 ==> [21],22,23,24,25
-		
-		1.page, 2.size=10
-		offset = (page-1)%5;
-		startPage = page-offset   -->       
+            
          
          <ul class="-list- center">
             <li th:each="num:${#numbers.sequence(1,5)}">
