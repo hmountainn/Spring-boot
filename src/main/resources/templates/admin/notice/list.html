@@ -1,26 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="/admin/inc/layout">
 
 <head>
-	<title>코딩 전문가를 만들기 위한 온라인 강의 시스템</title>
 	<meta charset="UTF-8">
 	<title>공지사항목록</title>
-
-	<link href="/css/customer/layout.css" type="text/css" rel="stylesheet" />
-	<style>
-		#visual .content-container {
-			height: inherit;
-			display: flex;
-			align-items: center;
-
-			background: url("/images/mypage/visual.png") no-repeat center;
-		}
-	</style>
 </head>
 
-		<div th:replace="admin/inc/layout::body(~{this::main})">
-		
-			<main class="main">
+			<main class="main" layout:fragment="main">
 				<h2 class="main title">공지사항</h2>
 
 				<div class="breadcrumb">
@@ -66,11 +54,11 @@
 						<tbody>
 
 							<tr th:each="n:${list}">
-								<td>8</td>
+								<td th:text="${n.id}">8</td>
 								<td class="title indent text-align-left">
-									<a href="detail.html" th:text="${n.title}">스프링 8강까지의 예제 코드</a></td>
+									<a href="detail?id=92032942" th:href="@{detail(id=${n.id},aa=4}" th:text="${n.title}">스프링 8강까지의 예제 코드</a></td>
 								<td th:text="${n.writerId}">newlec</td>
-								<td th:text="${#calendars.format(n.regDate, 'yyyy-mm-dd')}">
+								<td th:text="${#calendars.format(n.regDate, 'yyyy-MM-dd')}">
 									2019-08-18
 								</td>
 								<td th:text="${n.hit}">146</td>
@@ -103,8 +91,9 @@
 
 					</div>
 					<ul class="-list- center">
-						<li><a class="-text- orange bold" href="?p=1&t=&q=">1</a></li>
-
+						<li th:each="num:${#numbers.sequence(1,5)}">
+							<a class="-text- orange bold" href="?p=1&t=&q=" th:text="${num}">1</a>
+						</li>
 					</ul>
 					<div>
 
@@ -115,5 +104,5 @@
 
 				</div>
 			</main>
-		</div>
+
 </html>

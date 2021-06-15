@@ -79,7 +79,7 @@ public class NoticeController {
 		Notice notice = service.get(id);
 		model.addAttribute("notice",notice);
 		
-		return "admin.notice.detail";
+		return "admin/notice/detail";
 	}
 	
 	
