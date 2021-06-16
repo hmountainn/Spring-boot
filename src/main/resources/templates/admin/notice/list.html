@@ -12,12 +12,8 @@
    <main class="main" layout:fragment="main"
    	th:with="
    			x=${count%10},
-   			lastPage=${x==0?count/10:count/10+1},
-
-   			offset = ${(count-1)%5},
-   			startPage = ${count-offset}
-   			"
-   >
+   			lastPage=${x==0?count/10:count/10+1}
+   			">
       <h2 class="main title" th:text="${lastPage}">공지사항</h2>
 
       <div class="breadcrumb">
@@ -78,7 +74,7 @@
       <div class="indexer margin-top align-right">
          <h3 class="hidden">현재 페이지</h3>
          <div>
-            <span class="text-orange text-strong">1</span> / <span th:text="${lastPage}">1</span> pages
+            <span class="text-orange text-strong" th:text="${param.p}">1</span> / <span th:text="${lastPage}">1</span> pages
          </div>
       </div>
 
@@ -88,29 +84,31 @@
          <a class="btn-text btn-default" href="reg.html">글쓰기</a>
       </div>
       
-      <div th:text="${param.f}"></div>
-      <div th:text="${count}"></div>
 
-      <div class="margin-top align-center pager">
+      <div class="margin-top align-center pager"
+      	th:with="
+      			page = ${param.p}==null ? 1 : ${T(Integer).parseInt(param.p)}
+      			,offset = (${page}-1)%5
+   				,startPage = ${page-offset}
+   		">
+   				
 
          <div>
-            <span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');">이전</span>
+            <span class="btn btn-prev" onclick="alert('이전 페이지가 없습니다.');" th:if="${startPage}==1">이전</span>
+            <a class="btn btn-prev" href="list?p=5" th:href="@{list(p=${startPage}-1,f=${param.f},q=${param.q})}" th:if="${startPage}!=1"></a>
          </div>
-         
-         <div>
-         </div>
-            
-         
+
+                    
          <ul class="-list- center">
-            <li th:each="num:${#numbers.sequence(1,5)}">
-           		<a class="-text- orange bold" href="?p=1&f=&q=" th:href="@{list(p=${num},f=${param.f},q=${param.q})}" th:text="${num}">1</a>
+            <li th:each="num:${#numbers.sequence(startPage,startPage+4)}" th:if="${num}<=${lastPage}">
+           		<a class="aa" th:classappend="${page}==${num} ? '-text- orange bold' : '' " 
+           			href="?p=1&f=&q=" th:href="@{list(p=${num},f=${param.f},q=${param.q})}"
+           			 th:text="${num}">1</a>
             </li>
-
          </ul>
          <div>
-
-
-            <span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');">다음</span>
+            <span class="btn btn-next" onclick="alert('다음 페이지가 없습니다.');" th:if="${startPage}+5 > ${lastPage}">다음</span>
+            <a class="btn btn-next" th:href="@{list(p=${startPage}+5,f=${param.f},q=${param.q})}" th:if="${startPage}+5 <= ${lastPage}"></a>
 
          </div>
 

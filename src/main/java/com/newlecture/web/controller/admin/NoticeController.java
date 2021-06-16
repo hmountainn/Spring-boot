@@ -41,6 +41,7 @@ public class NoticeController {
 		
 		model.addAttribute("list",list);
 		model.addAttribute("count",count);
+		/* model.addAttribute("page", page); */
 		
 		return "admin/notice/list"; //mapping 정보
 		
