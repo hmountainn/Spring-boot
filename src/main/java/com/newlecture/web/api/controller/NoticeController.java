@@ -1,6 +1,8 @@
-package com.newlecture.web.controller.admin;
+package com.newlecture.web.api.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -13,15 +15,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.service.NoticeService;
 
-@Controller("adminNoticeController") //Controller로 변경(문서반환)
-@RequestMapping("/admin/notice/") //공통 url
+@RestController("apiNoticeController") //Controller로 변경(문서반환)
+@RequestMapping("/api/notice/") //공통 url
 public class NoticeController {
 	
 	@Autowired
@@ -29,41 +31,23 @@ public class NoticeController {
 	
 	@RequestMapping("list")
 	//@ResponseBody //이건 문서봔환말고 그냥 restController처럼 텍스트 반환
-	public String list(
+	public Map<String, Object> list(
 			@RequestParam(name="p", defaultValue = "1") Integer page,
 			@RequestParam(name="f", defaultValue = "title") String field,
 			@RequestParam(name="q", defaultValue = "") String query,
 			Model model) {
 		
-		//List<Notice> list = service.getList();
+		Map<String, Object> map = new HashMap<>();
+		
 		List<Notice> list = service.getList(page, field, query); //검색
 		int count = service.getCount(field, query);
 		
-		model.addAttribute("list",list);
-		model.addAttribute("count",count);
-		/* model.addAttribute("page", page); */
+		map.put("list", list);
+		map.put("count", count);
+
 		
-		return "admin/notice/list-react"; //mapping 정보
+		return map; //mapping 정보
 		
-//		List<Notice> list = new ArrayList<>();
-//		Notice notice = null;
-//		
-//		notice = new Notice();
-//		notice.setId(1);
-//		notice.setTitle("클릭하세용");
-//		notice.setWriterId("JISAN");
-//		list.add(notice);
-		
-//		ModelAndView mv = new ModelAndView(); //ModelAndView에 데이터 넣음
-//		mv.setViewName("admin.notice.list"); //View주소
-//		mv.addObject("list",list); //데이터 객체
-		
-		//model.addAttribute("list", list); // 데이터 객체
-		/* model.addAttribute("title", "test haha"); */
-		
-		//return "/WEB-INF/view/admin/notice/list.jsp";
-		//return mv; //DisPatcher에게 데이터 전달
-		//return "admin.notice.list"; //mapping 정보
 	}
 	
 //	@RequestMapping("detail")

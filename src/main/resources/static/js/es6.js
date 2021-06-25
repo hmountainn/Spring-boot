@@ -302,45 +302,196 @@
 
 
 // ---- Generator ---------------
-class MissileContainer{
-    #missiles
-    #index; // 누적을 위한 위치 인덱스
-    //#current;
-    constructor(){
-        this.#missiles = [];
-        this.#index = 0;
-        //this.#current = 0;
-    }
+// class MissileContainer{
+//     #missiles
+//     #index; // 누적을 위한 위치 인덱스
+//     //#current;
+//     constructor(){
+//         this.#missiles = [];
+//         this.#index = 0;
+//         //this.#current = 0;
+//     }
 
-    add(missile){
-        this.#missiles[this.#index] = missile;
-        this.#index++;
-    }    
+//     add(missile){
+//         this.#missiles[this.#index] = missile;
+//         this.#index++;
+//     }    
     
-    [Symbol.iterator](){
+//     [Symbol.iterator](){
 
-        let missiles = this.#missiles;
+//         let missiles = this.#missiles;
         
-        function* iterator(){
-            for(let i=0; i<missiles.length; i++)
-                yield missiles[i];
-        };
+//         function* iterator(){
+//             for(let i=0; i<missiles.length; i++)
+//                 yield missiles[i];
+//         };
 
-        return iterator();
-    }
-    // function* iterator(){ //Generator이용해서 Iterator 생성
-    //     for(let i=0; i<100; i++)
-    //         yield i;
-    // }
-}
+//         return iterator();
+//     }
+//     // function* iterator(){ //Generator이용해서 Iterator 생성
+//     //     for(let i=0; i<100; i++)
+//     //         yield i;
+//     // }
+// }
 
-let mc = new MissileContainer();
-mc.add("미사일1")
-mc.add("미사일2")
-mc.add("미사일3")
+// let mc = new MissileContainer();
+// mc.add("미사일1")
+// mc.add("미사일2")
+// mc.add("미사일3")
 
-let it = mc[Symbol.iterator]();
+// let it = mc[Symbol.iterator]();
 
-for(let v of mc)
-    console.log(v);
+// for(let v of mc)
+//     console.log(v);
+
+//-------Promise-------------
+// function getCountSync() { //동기
+//     let result = 0;
     
+//     result = 3; //로드된 값을 3으로 가정한다.
+
+//     return result
+// }
+// console.log(getCountSync()); //3
+
+
+// function getCountAsync() { //비동기
+//     let result = 0;
+    
+//     //데이터가 로드된 후에 그 값을 반환하는 함수
+//     // : 로드되는 시간이 3초라고 가정한다
+//     setTimeout(function(){
+//         result = 3; //로드된 값을 3으로 가정한다.
+//     }, 3000);
+    
+//     return result
+// }
+// console.log(getCountAsync()); //0
+
+
+// function getCountAsync2(callback) { //비동기 callback사용
+//     let result = 0;
+    
+//     //데이터가 로드된 후에 그 값을 반환하는 함수
+//     // : 로드되는 시간이 3초라고 가정한다
+//     setTimeout(function(){
+//         result = 3; //로드된 값을 3으로 가정한다.
+//         callback(result); //return
+//     }, 3000);
+    
+// }
+
+// getCountAsync2(function(count){
+//     console.log(`callback 호출:${count}`)
+// })
+
+
+// function getCountAsyncUsingPromise() { //비동기 Promise사용
+    
+//     let promise = new Promise(function(resolve,reject){
+//         //데이터가 로드된 후에 그 값을 반환하는 함수
+//         // : 로드되는 시간이 3초라고 가정한다
+//         setTimeout(function(){
+//             result = 3; //로드된 값을 3으로 가정한다.
+//             resolve(result); //return
+//         }, 3000);
+//     });
+
+//     return promise;
+// }
+
+// let promise = getCountAsyncUsingPromise();
+// promise.then(function(result){
+//     console.log(`Promise 첫번째 호출 ${result}`)
+// })
+
+// getCountAsyncUsingPromise()
+// .then(function(result){
+//     console.log(`Promise 두번째 호출 ${result}`)
+// })
+
+// //3 번째 방법
+// async function printCount() {
+//     let result = await getCountAsyncUsingPromise();
+
+//     console.log(`세번째 호출 ${result}`);
+// }
+// printCount();
+
+
+// function add(x,y) {
+    
+//     let promise = new Promise(function(resolve,reject){
+//         //데이터가 로드된 후에 그 값을 반환하는 함수
+//         // : 로드되는 시간이 3초라고 가정한다
+//         setTimeout(function(){
+//             let result = 3+x+y; //로드된 값을 3으로 가정한다.
+            
+//             if(result>10){
+//                 reject("값이 넘 크다")
+//                 return;
+//             }
+            
+//             resolve(result);
+            
+//         }, 3000);
+//     });
+//     return promise;
+// }
+
+// add(2,9)
+// .then(function(result) {
+//     console.log(`result:${result}`)
+// }, function(err){
+//     console.log(`err:${err}`)
+// });
+
+
+// function add2() {
+    
+//     let promise = new Promise(function(resolve,reject){
+//         //데이터가 로드된 후에 그 값을 반환하는 함수
+//         // : 로드되는 시간이 3초라고 가정한다
+//         setTimeout(function(){
+//             //let result = 3+x+y; //로드된 값을 3으로 가정한다.
+          
+//             resolve([{kor:10,eng:10},{kor:20,eng:20}]);
+            
+//         }, 3000);
+//     });
+//     return promise;
+// }
+
+// add2()
+// .then(function(list) {
+//     return list[0]
+// }, function(err){
+//     console.log(`err:${err}`)
+// })
+// .then(function(exam){
+//     return exam.kor;
+// })
+// .then(function(kor){
+//     console.log(`kor:${kor}`);
+// })
+
+//----------module
+
+//함수 import
+import aaa,{test, test2} from './module1.js';
+import bbb,{test as mtest, test2 as mtest2} from './module2.js';
+
+aaa() //test1 function
+test(); //test function
+test2(); //test2 function
+
+bbb() //mtest1 function
+mtest(); //mtest function
+mtest2(); //mtest2 function
+
+//class import
+import Exam from './exam.js';
+
+//let exam = new Exam(1,1,1);
+console.log(Exam.total());
+
