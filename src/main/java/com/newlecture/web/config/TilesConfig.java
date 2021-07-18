@@ -7,7 +7,7 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 //Bean Container : IoC Container
-//@Configuration // 구성요소: 스프링 어플리케이션을 구성하는 객체
+@Configuration // 구성요소: 스프링 어플리케이션을 구성하는 객체
 public class TilesConfig {
 	
 	@Bean //반환값을 Bean Container에 담아줌
