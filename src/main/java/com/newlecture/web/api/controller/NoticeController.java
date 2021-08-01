@@ -8,10 +8,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +30,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeService service;
 	
+	//@CrossOrigin(origins = "http://localhost:3000")
 	@RequestMapping("list")
 	//@ResponseBody //이건 문서봔환말고 그냥 restController처럼 텍스트 반환
 	public Map<String, Object> list(
@@ -48,6 +50,12 @@ public class NoticeController {
 		
 		return map; //mapping 정보
 		
+	}
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("{id}")
+	public Notice get(@PathVariable("id") int id) {
+		return service.get(id);
 	}
 	
 //	@RequestMapping("detail")
