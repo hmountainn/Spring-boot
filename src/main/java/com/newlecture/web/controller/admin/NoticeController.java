@@ -43,8 +43,8 @@ public class NoticeController {
 		model.addAttribute("count",count);
 		/* model.addAttribute("page", page); */
 		
-		return "admin/notice/list-react"; //mapping 정보
-		
+		//return "admin/notice/list-react"; //mapping 정보
+		return "admin/notice/list";
 //		List<Notice> list = new ArrayList<>();
 //		Notice notice = null;
 //		
